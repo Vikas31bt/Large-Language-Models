@@ -182,22 +182,28 @@ class VariantList:
 
 
 # Example Test
-# 1. Create an Instance of Genome
+# Create an Instance of Genome
 genome_instance = Genome("/hpf/largeprojects/ccmbio/vikas_kaushik/Homo_sapiens.GRCh37.75.dna.primary_assembly.fa")
-# 2. Fetch a Region
+
+# Fetch a Region
 sequence = genome_instance.fetch("3", 1000, 2000)
 print("Fetched Sequence:", sequence)
-# 3. Create an Instance of Variant
+
+# Create an Instance of Variant
 variant_instance = Variant(chrom="3", pos=1500, ref="A", alt="G", genome=genome_instance)
-# 4. Mutate the Variant
+
+# Mutate the Variant
 mutated_sequence = variant_instance.mutate(total=100, ratio=0.3, return_as='str')
 print("Mutated Sequence:", mutated_sequence.seq)
-# 5. Create an Instance of VariantList
+
+# Create an Instance of VariantList
 variant_list_instance = VariantList([variant_instance])
-# 6. Append to VariantList
+
+# Append to VariantList
 new_variant_instance = Variant(chrom="3", pos=2000, ref="C", alt="T", genome=genome_instance)
 variant_list_instance.append(new_variant_instance)
-# 7. Write to File
-output_file_path = "path/to/output.tsv"
+
+# Write to File
+output_file_path = "/hpf/largeprojects/ccmbio/vikas_kaushik/output.tsv"
 variant_list_instance.write(output_file_path, type='tsv')
 print(f"Variants written to {output_file_path}")
